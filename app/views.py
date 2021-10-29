@@ -12,11 +12,10 @@ def home(request):
     if search:
         data['db'] = cargos.objects.filter(cargo__icontains=search)
     else:
-        data['db'] = cargos.objects.all()
-    all = cargos.objects.all()
-    paginator = Paginator(all, 8)
-    pages = request.GET.get('page')
-    data["db"] = paginator.get_page(pages)
+        all = cargos.objects.all()  
+        paginator = Paginator(all, 8)
+        pages = request.GET.get('page')
+        data["db"] = paginator.get_page(pages)
     return render(request, "index.html", data)
 
 def form(request):
